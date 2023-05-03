@@ -5,6 +5,8 @@ import NoteForm from './components/NoteForm';
 import EditNote from './components/EditNote';
 import NoteContext from './components/NoteContext';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Nav from 'react-bootstrap/Nav';
 
 const App = () => {
 
@@ -23,17 +25,20 @@ const App = () => {
     //make all notes available to my components (state management )
     <NoteContext.Provider value={{ notes, setNotes }}>
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Notes</Link>
-            </li>
-            <li>
-              <Link to="/new">New Note</Link>
-            </li>
-          </ul>
-        </nav>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+        }}>
+          <Nav style={{marginBottom: "2rem"}}>
+          <Nav.Item>
+        <Nav.Link href="/">Notes</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="new">New</Nav.Link>
+      </Nav.Item>
+    </Nav>
 
         <Routes>
           <Route exact path="/" element={<NotesList/>}/>

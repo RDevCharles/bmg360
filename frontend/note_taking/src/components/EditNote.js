@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import NoteContext from './NoteContext';
 
 
@@ -39,17 +41,17 @@ useEffect(() => {
   return (
     <div>
       <h2>Edit Note</h2>
-      <form onSubmit={handleUpdateNote}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        </div>
-        <div>
-          <label htmlFor="content">Content:</label>
-          <textarea id="content" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
-        </div>
-        <button type="submit">Save</button>
-      </form>
+      <Form onSubmit={handleUpdateNote}>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Title</Form.Label>
+        <Form.Control onChange={(e) => setTitle(e.target.value)} type="email" value={title} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>Content</Form.Label>
+        <Form.Control onChange={(e) => setContent(e.target.value)} as="textarea" value={content} rows={3} />
+      </Form.Group>
+        <Button type="submit">Save</Button>
+      </Form>
     </div>
   );
 };

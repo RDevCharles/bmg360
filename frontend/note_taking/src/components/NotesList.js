@@ -2,6 +2,8 @@ import React, {useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NoteContext from './NoteContext';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 
 
@@ -29,12 +31,22 @@ const NoteList = () => {
     <div>
     
       {notes.map(note => (
-        <div key={note.id}>
-          <h3>{note.title}</h3>
-          
-          <p>{note.content}</p>
-          <button onClick={() => handleDeleteNote(note.id)}>Delete</button>
-          <Link to={`/${note.id}/edit`}>Edit</Link>
+        <div style={{
+          marginBottom: "2rem",
+        }} key={note.id}>
+          <Card style={{ width: '18rem' }}>
+      <Card.Body>
+        <Card.Title>{note.title}</Card.Title>
+    
+        <Card.Text>
+        {note.content}
+        </Card.Text>
+      
+          <Button style={{marginRight:"2rem"}} variant="danger" onClick={() => handleDeleteNote(note.id)}>Delete</Button>
+          <Link to={`/${note.id}/edit`}><Button variant="success">Edit</Button></Link>
+      </Card.Body>
+    </Card>
+     
         </div>
       ))}
     </div>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const NoteForm = ({ note }) => {
 
@@ -28,24 +30,20 @@ const NoteForm = ({ note }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Title:
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </label>
-      <label>
-        Content:
-        <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-      </label>
-      <button type="submit">Create</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      
+      <Form.Group className="mb-3" >
+        <Form.Label>Title</Form.Label>
+        <Form.Control onChange={(e) => setTitle(e.target.value)} type="text" value={title} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>Content</Form.Label>
+        <Form.Control onChange={(e) => setContent(e.target.value)} as="textarea" value={content} rows={3} />
+      </Form.Group>
+        <Button type="submit">Create</Button>
+      </Form>
+     
+  
   );
 };
 
